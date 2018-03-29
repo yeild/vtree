@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="container"></div>
+<script>
+  const data = [
+    {
+      title: '华北区',
+      children: [{
+        title: '北京市',
+        children: [{
+          title: '北京华夏天合国际影城'
+        }, {
+          title: '北京嘉禾影院'
+        }, {
+          title: '北京嘉禾影院'
+        }]
+      },{
+        title: '北京市',
+        children: [{
+          title: '北京华夏天合国际影城'
+        }, {
+          title: '北京嘉禾影院'
+        }, {
+          title: '北京嘉禾影院'
+        }]
+      }]
+    }, {
+      title: '华东区',
+      children: [{
+        title: '江苏省',
+        children: [{
+          title: '江苏南京高淳时代影城'
+        }, {
+          title: '江苏东海乐趴蓝海影城'
+        }, {
+          title: '江苏南京浦口影粉东方国际影城'
+        }]
+      }]
+    }]
+  antree.init({
+    el: document.getElementById('container'),
+    data,
+    checkbox: true
+  })
+
+</script>
+</body>
+</html>

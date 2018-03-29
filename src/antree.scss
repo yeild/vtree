@@ -1,0 +1,77 @@
+$black: #495060;
+$blue: #2d8cf0;
+$grey: #dddee1;
+.antree-container {
+  color: $black;
+}
+.antree-children {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: all 0.5s;
+  overflow: hidden;
+  &-open {
+    height: 0;
+  }
+  li {
+    position: relative;
+    ul {
+      margin-left: 25px;
+    }
+  }
+}
+
+.antree-icon-arrow {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  border: 6px solid transparent;
+  border-top: 8px solid $black;
+  cursor: pointer;
+  transition: all 0.3s;
+  &-open {
+    transform: rotate(-90deg);
+  }
+}
+
+.antree-checkbox {
+  position: relative;
+}
+.antree-checkbox-label {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  left: 2px;
+  top: 3px;
+  border: 1px solid $grey;
+  border-radius: 2px;
+  background: white;
+  transition: all 0.3s;
+  &-checked {
+    background: $blue;
+    border: $blue;
+    &.antree-checkbox-label:after {
+      transform: rotate(45deg) scale(1);
+    }
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 8px;
+    top: 1px;
+    left: 5px;
+    border: 2px solid #fff {
+      top: 0;
+      left: 0;
+    };
+    transform: rotate(45deg) scale(0);
+    transition: all 0.3s;
+  }
+}
+.antree-checkbox-input {
+  visibility: hidden;
+}
+.antree-title {
+  margin-left: 5px;
+}
