@@ -25,15 +25,18 @@ function createIconArrow() {
   return iconArrow
 }
 
-function createCheckbox() {
+function createCheckbox(data) {
   let checkboxInput = document.createElement('input')
   checkboxInput.type = 'checkbox'
   checkboxInput.className = 'antree-checkbox-input'
 
   let label = document.createElement('i')
   label.className = 'antree-checkbox-label'
+  label.parent = data.parent
+
   label.addEventListener('click', () => {
     checkboxInput.click()
+    data.emitChecked(checkboxInput.checked)
     toggleClass(label, 'antree-checkbox-label-checked')
   })
 
@@ -57,7 +60,7 @@ export function createTree(data) {
   } else {
     let li = document.createElement('li')
     data.children && li.appendChild(createIconArrow())
-    li.appendChild(createCheckbox())
+    li.appendChild(createCheckbox(data))
     let title = createTitle()
     title.innerHTML = data.title
     li.appendChild(title)

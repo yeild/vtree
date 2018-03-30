@@ -25,11 +25,14 @@ $grey: #dddee1;
   display: inline-block;
   position: relative;
   width: 0;
+  top: 3px;
+  left: 1px;
   border: 6px solid transparent;
   border-top: 8px solid $black;
   cursor: pointer;
   transition: all 0.3s;
   &-open {
+    top: 2px;
     transform: rotate(-90deg);
   }
 }
@@ -41,7 +44,7 @@ $grey: #dddee1;
   position: absolute;
   width: 15px;
   height: 15px;
-  left: 2px;
+  left: 4px;
   top: 3px;
   border: 1px solid $grey;
   border-radius: 2px;
@@ -67,11 +70,12 @@ $grey: #dddee1;
     };
     transform: rotate(45deg) scale(0);
     transition: all 0.3s;
+    cursor: pointer;
   }
 }
 .antree-checkbox-input {
   visibility: hidden;
 }
 .antree-title {
-  margin-left: 5px;
+  margin-left: 8px;
 }
