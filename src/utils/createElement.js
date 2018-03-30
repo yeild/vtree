@@ -1,5 +1,5 @@
 import { getSiblings } from './selector'
-import { toggleClass } from './css'
+import { addClass, removeClass, toggleClass } from './css'
 
 function createChildren() {
   let children = document.createElement('ul')
@@ -32,18 +32,34 @@ function createCheckbox(data) {
 
   let label = document.createElement('i')
   label.className = 'antree-checkbox-label'
-  label.parent = data.parent
-
-  label.addEventListener('click', () => {
-    checkboxInput.click()
-    data.emitChecked(checkboxInput.checked)
-    toggleClass(label, 'antree-checkbox-label-checked')
-  })
 
   let checkbox = document.createElement('span')
   checkbox.className = 'antree-checkbox'
   checkbox.appendChild(checkboxInput)
   checkbox.appendChild(label)
+//console.log(data)
+  function setLabelClass(type) {
+    label.className = 'antree-checkbox-label '
+    if (type) label.className += 'antree-checkbox-label-' + type
+  }
+
+  data.onCheckedAllChildren = function () {
+    checkboxInput.checked = true
+    setLabelClass('checked')
+  }
+  data.onCheckedHalf = function () {
+    setLabelClass('half')
+  }
+  data.onCanceledAllChildren = function () {
+    checkboxInput.checked = false
+    setLabelClass()
+  }
+  checkboxInput.addEventListener('change', (e) => {
+    const status = e.target.checked
+    data.parent && data.emitChange(status)
+    data.children && data.dispatchChange(status)
+    toggleClass(label, 'antree-checkbox-label-checked')
+  })
 
   return checkbox
 }
