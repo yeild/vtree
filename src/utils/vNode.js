@@ -1,38 +1,46 @@
-function getChildrenNum(data) {
-  let num = 0
-
-  function getNum(data) {
-    if (data.children) {
-      data.children.forEach(item => {
-        getNum(item)
-      })
-    }
-    return num
+function getLeaf(data) {
+  let leaf = []
+  function traverse(data) {
+    data.children.forEach(i => {
+      if (i.children) {
+        traverse(i)
+      } else leaf.push(i)
+    })
   }
-
-  return getNum(data)
+  traverse(data)
+  return leaf
 }
 
 function link(data) {
   data.emitChange = function (status) {
-    data.parent.handleChildrenChange(status)
+    let num = 1
+    if (data.leafNum) {
+      num = status ? data.leafNum - data.checkedChildrenNum : data.checkedChildrenNum
+    }
+    data.parent.handleEmit(status, num)
   }
   if (data.children) {
-    data.totalChildrenNum = getChildrenNum(data)
+    data.leafNum = getLeaf(data).length
     data.checkedChildrenNum = 0
     data.dispatchChange = function (status) {
-      console.log('下发：', status)
+      let num = status ? data.leafNum : 0
+      let fn = status ? 'checkThis' : 'cancelThis'
+      data.checkedChildrenNum = num
+      data.children.forEach(i => {
+        i.children && i.dispatchChange(status)
+        i[fn]()
+      })
     }
-    data.handleChildrenChange = function (status) {
-      status ? data.checkedChildrenNum++ : data.checkedChildrenNum--
-      if (data.checkedChildrenNum === data.totalChildrenNum) {
-        data.onCheckedAllChildren && data.onCheckedAllChildren()
+    data.handleEmit = function (status, num) {
+      data.checkedChildrenNum += (status ? num : -num)
+      if (data.checkedChildrenNum === data.leafNum) {
+        data.checkThis()
       } else if (data.checkedChildrenNum === 0) {
-        data.onCanceledAllChildren && data.onCanceledAllChildren()
+        data.cancelThis()
       } else {
-        data.onCheckedHalf && data.onCheckedHalf()
+        data.halfCheck()
       }
-      data.parent && data.emitChange(status)
+      data.parent && data.parent.handleEmit(status, num)
     }
     data.children.forEach(child => {
       child.parent = data
@@ -42,7 +50,8 @@ function link(data) {
 }
 
 export function createVNode(data) {
-  let vNode = Object.assign([], data)
+  let vNode = JSON.parse(JSON.stringify(data))
+  vNode.rawData = data
   vNode.forEach(data => {
     link(data)
   })

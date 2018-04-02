@@ -37,20 +37,21 @@ function createCheckbox(data) {
   checkbox.className = 'antree-checkbox'
   checkbox.appendChild(checkboxInput)
   checkbox.appendChild(label)
-//console.log(data)
+
   function setLabelClass(type) {
     label.className = 'antree-checkbox-label '
     if (type) label.className += 'antree-checkbox-label-' + type
   }
 
-  data.onCheckedAllChildren = function () {
+  data.checkThis = function () {
     checkboxInput.checked = true
     setLabelClass('checked')
   }
-  data.onCheckedHalf = function () {
+  data.halfCheck = function () {
+    checkboxInput.checked = false
     setLabelClass('half')
   }
-  data.onCanceledAllChildren = function () {
+  data.cancelThis = function () {
     checkboxInput.checked = false
     setLabelClass()
   }
@@ -58,7 +59,7 @@ function createCheckbox(data) {
     const status = e.target.checked
     data.parent && data.emitChange(status)
     data.children && data.dispatchChange(status)
-    toggleClass(label, 'antree-checkbox-label-checked')
+    status ? data.checkThis() : data.cancelThis()
   })
 
   return checkbox
@@ -78,7 +79,7 @@ export function createTree(data) {
     data.children && li.appendChild(createIconArrow())
     li.appendChild(createCheckbox(data))
     let title = createTitle()
-    title.innerHTML = data.title
+    title.innerHTML = data.leafNum
     li.appendChild(title)
     return li
   }
