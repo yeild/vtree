@@ -1,16 +1,15 @@
 $black: #495060;
 $blue: #2d8cf0;
 $grey: #dddee1;
-.antree-container {
-  color: $black;
-  font-size: 14px;
-}
-.antree-children {
+
+.vTree-children {
   list-style: none;
   margin: 0;
   padding: 0;
   transition: all 0.5s;
   overflow: hidden;
+  color: $black;
+  font-size: 14px;
   &-open {
     height: 0;
   }
@@ -22,7 +21,7 @@ $grey: #dddee1;
   }
 }
 
-.antree-icon-arrow {
+.vTree-icon-arrow {
   display: inline-block;
   position: relative;
   width: 0;
@@ -37,10 +36,10 @@ $grey: #dddee1;
   }
 }
 
-.antree-checkbox {
+.vTree-checkbox {
   position: relative;
 }
-.antree-checkbox-label {
+.vTree-checkbox-label {
   position: absolute;
   width: 15px;
   height: 15px;
@@ -53,14 +52,14 @@ $grey: #dddee1;
   &-checked {
     background: $blue;
     border: $blue;
-    &.antree-checkbox-label:after {
+    &.vTree-checkbox-label:after {
       transform: rotate(45deg) scale(1);
     }
   }
   &-half {
     background: $blue;
     border: $blue;
-    &.antree-checkbox-label:after {
+    &.vTree-checkbox-label:after {
       transform: rotate(90deg) scale(1);
       width: 0;
       left: 6px;
@@ -83,7 +82,7 @@ $grey: #dddee1;
     cursor: pointer;
   }
 }
-.antree-checkbox-input {
+.vTree-checkbox-input {
   position: relative;
   top: 4px;
   left: 2px;
@@ -93,6 +92,6 @@ $grey: #dddee1;
   z-index: 1;
   cursor: pointer;
 }
-.antree-title {
+.vTree-title {
   margin-left: 6px;
 }

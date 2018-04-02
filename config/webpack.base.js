@@ -1,11 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  entry: {
-    antree: [
-      './src/main',
-    ]
-  },
+  entry: './src/antree',
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].js',

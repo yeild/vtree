@@ -42,8 +42,9 @@ function link(data) {
       }
       data.parent && data.parent.handleEmit(status, num)
     }
-    data.children.forEach(child => {
+    data.children.forEach((child, index) => {
       child.parent = data
+      child.rawData = data.rawData.children[index]
       link(child)
     })
   }
@@ -52,7 +53,8 @@ function link(data) {
 export function createVNode(data) {
   let vNode = JSON.parse(JSON.stringify(data))
   vNode.rawData = data
-  vNode.forEach(data => {
+  vNode.forEach((data, index) => {
+    data.rawData = vNode.rawData[index]
     link(data)
   })
   return vNode
