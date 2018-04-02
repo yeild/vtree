@@ -28,7 +28,7 @@ function link(data) {
       data.checkedChildrenNum = num
       data.children.forEach(i => {
         i.children && i.dispatchChange(status)
-        i[fn]()
+        !i.disabled &&i[fn]()
       })
     }
     data.handleEmit = function (status, num) {
@@ -44,6 +44,7 @@ function link(data) {
     }
     data.children.forEach((child, index) => {
       child.parent = data
+      if (data.disabled) child.disabled = true
       child.rawData = data.rawData.children[index]
       link(child)
     })

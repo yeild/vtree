@@ -10,7 +10,7 @@ $grey: #dddee1;
   overflow: hidden;
   color: $black;
   font-size: 14px;
-  &-open {
+  &-collapse {
     height: 0;
   }
   li {
@@ -30,7 +30,7 @@ $grey: #dddee1;
   border-top: 8px solid $black;
   cursor: pointer;
   transition: all 0.3s;
-  &-open {
+  &-collapse {
     top: 2px;
     transform: rotate(-90deg);
   }
@@ -49,16 +49,23 @@ $grey: #dddee1;
   border-radius: 2px;
   background: white;
   transition: all 0.3s;
+  &-disabled {
+    background: #f3f3f3 !important;
+    border-color: $grey !important;
+    &.vTree-checkbox-label:after {
+      border-color: #ccc;
+    }
+  }
   &-checked {
     background: $blue;
-    border: $blue;
+    border-color: $blue;
     &.vTree-checkbox-label:after {
       transform: rotate(45deg) scale(1);
     }
   }
   &-half {
     background: $blue;
-    border: $blue;
+    border-color: $blue;
     &.vTree-checkbox-label:after {
       transform: rotate(90deg) scale(1);
       width: 0;
@@ -91,6 +98,9 @@ $grey: #dddee1;
   opacity: 0;
   z-index: 1;
   cursor: pointer;
+  &-disabled {
+  cursor: not-allowed;
+}
 }
 .vTree-title {
   margin-left: 6px;

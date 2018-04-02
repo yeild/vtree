@@ -13,14 +13,17 @@
       children: [{
         title: '北京市',
         children: [{
-          title: '北京华夏天合国际影城'
+          title: '北京华夏天合国际影城',
+          checked: true
         }, {
-          title: '北京嘉禾影院'
+          title: '北京嘉禾影院',
         }, {
           title: '北京嘉禾影院',
           children:[{
             title: '5号厅',
+            checked: true
           },{
+            disabled: true,
             title: '6号厅'
           }]
         }]
@@ -29,7 +32,7 @@
         children: [{
           title: '北京华夏天合国际影城'
         }, {
-          title: '北京嘉禾影院'
+          title: '北京嘉禾影院',
         }, {
           title: '北京嘉禾影院'
         }]
@@ -47,7 +50,7 @@
         }]
       }]
     }]
-  let tree = antree.init({
+  let tree = vTree.init({
     el: document.getElementById('container'),
     data,
     checkbox: true
