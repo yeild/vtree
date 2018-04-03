@@ -17,7 +17,7 @@ function createIconArrow(data) {
   let iconArrow = document.createElement('i')
   iconArrow.className = 'vTree-icon-arrow'
 
-  // open & collapse list
+  // expand & collapse list
   iconArrow.addEventListener('click', () => {
     getSiblings(iconArrow, 'UL').forEach(item => {
       toggleClass(item, 'vTree-children-collapse')
@@ -25,7 +25,7 @@ function createIconArrow(data) {
     toggleClass(iconArrow, 'vTree-icon-arrow-collapse')
   })
 
-  if (data.open === false) {
+  if (data.expand === false) {
     // set initial className when DOM mounted
     setTimeout(() => { 
       getSiblings(iconArrow, 'UL').forEach(item => {
@@ -84,6 +84,7 @@ function createCheckbox(data, ctx) {
     data.parent && data.emitChange(status) // emit to parent
     data.children && data.dispatchChange(status) // dispatch to children
     status ? data.checkThis() : data.cancelThis() // check itself
+    if (realEvent) ctx.onCheck && ctx.onCheck(data.rawData)
     realEvent = true
   })
   if (data.checked) {

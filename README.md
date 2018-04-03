@@ -51,6 +51,12 @@ see: [Demo](https://yeild.github.io/vtree/demo.html)
         <td>Boolean</td>
         <td>true</td>
     </tr>
+    <tr>
+        <td>onCheck</td>
+        <td>execute when click checkbox, with current node data as a param</td>
+        <td>Function</td>
+        <td> - </td>
+    </tr>
 </table>
 
 ##### data:
@@ -68,7 +74,7 @@ see: [Demo](https://yeild.github.io/vtree/demo.html)
         <td> - </td>
     </tr>
     <tr>
-        <td>open</td>
+        <td>expand</td>
         <td>if expand node</td>
         <td>Boolean</td>
         <td>true</td>
