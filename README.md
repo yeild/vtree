@@ -1,6 +1,7 @@
 # vtree
 tree component  树状图插件
 
+![](http://ooqymz3vm.bkt.clouddn.com/tree.png)
 ### Usage
 
 1. download [vtree.min.js](https://raw.githubusercontent.com/yeild/vtree/master/dist/vtree.min.js)
