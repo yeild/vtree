@@ -1,3 +1,8 @@
+/**
+ * return leaf nodes array from a node.
+ * @param data
+ * @returns {Array}
+ */
 function getLeaf(data) {
   let leaf = []
   function traverse(data) {
@@ -12,16 +17,19 @@ function getLeaf(data) {
 }
 
 function link(data) {
+  // when child changed, emit event to parent
   data.emitChange = function (status) {
-    let num = 1
+    let num = 1 // how many nodes changed
     if (data.leafNum) {
       num = status ? data.leafNum - data.checkedChildrenNum : data.checkedChildrenNum
     }
     data.parent.handleEmit(status, num)
   }
+
   if (data.children) {
     data.leafNum = getLeaf(data).length
     data.checkedChildrenNum = 0
+    // when parent changed, dispatch event to children
     data.dispatchChange = function (status) {
       let num = status ? data.leafNum : 0
       let fn = status ? 'checkThis' : 'cancelThis'
@@ -43,7 +51,7 @@ function link(data) {
       data.parent && data.parent.handleEmit(status, num)
     }
     data.children.forEach((child, index) => {
-      child.parent = data
+      child.parent = data // link data & parent
       if (data.disabled) child.disabled = true
       child.rawData = data.rawData.children[index]
       link(child)
@@ -52,7 +60,7 @@ function link(data) {
 }
 
 export function createVNode(data) {
-  let vNode = JSON.parse(JSON.stringify(data))
+  let vNode = JSON.parse(JSON.stringify(data)) // clone raw data
   vNode.rawData = data
   vNode.forEach((data, index) => {
     data.rawData = vNode.rawData[index]

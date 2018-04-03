@@ -1,10 +1,10 @@
 import { getSiblings } from './selector'
-import { addClass, removeClass, toggleClass } from './css'
+import { addClass, removeClass, toggleClass } from './classes'
 
-function createChildren() {
-  let children = document.createElement('ul')
-  children.className = 'vTree-children'
-  return children
+function createUL() {
+  let ul = document.createElement('ul')
+  ul.className = 'vTree-children'
+  return ul
 }
 
 function createTitle() {
@@ -16,14 +16,18 @@ function createTitle() {
 function createIconArrow(data) {
   let iconArrow = document.createElement('i')
   iconArrow.className = 'vTree-icon-arrow'
+
+  // open & collapse list
   iconArrow.addEventListener('click', () => {
     getSiblings(iconArrow, 'UL').forEach(item => {
       toggleClass(item, 'vTree-children-collapse')
     })
     toggleClass(iconArrow, 'vTree-icon-arrow-collapse')
   })
+
   if (data.open === false) {
-    setTimeout(() => {
+    // set initial className when DOM mounted
+    setTimeout(() => { 
       getSiblings(iconArrow, 'UL').forEach(item => {
         addClass(item, 'vTree-children-collapse')
       })
@@ -55,31 +59,37 @@ function createCheckbox(data, ctx) {
   }
 
   data.checkThis = function () {
+    // when checked, push the raw data to checkedNodes Map
     if (!data.children) ctx.checkedNodes.set(data.rawData, null)
     checkboxInput.checked = true
     setLabelClass('checked')
   }
+
   data.halfCheck = function () {
     checkboxInput.checked = false
     setLabelClass('half')
   }
+
   data.cancelThis = function () {
-    checkboxInput.checked = false
     ctx.checkedNodes.delete(data.rawData)
+    checkboxInput.checked = false
     setLabelClass()
   }
-  let r = true
+
+  let realEvent = true
   checkboxInput.addEventListener('change', (e) => {
-    if (r && data.disabled) return false
+    // when init default status, don't return
+    if (realEvent && data.disabled) return false
     const status = e.target.checked
-    data.parent && data.emitChange(status)
-    data.children && data.dispatchChange(status)
-    status ? data.checkThis() : data.cancelThis()
-    r = true
+    data.parent && data.emitChange(status) // emit to parent
+    data.children && data.dispatchChange(status) // dispatch to children
+    status ? data.checkThis() : data.cancelThis() // check itself
+    realEvent = true
   })
   if (data.checked) {
+    // set default status when DOM mounted
     setTimeout(() => {
-      r = false
+      realEvent = false
       checkboxInput.click()
     })
   }
@@ -87,18 +97,19 @@ function createCheckbox(data, ctx) {
 }
 
 export function createTree(data, ctx) {
-  let children = createChildren()
-  if (Array.isArray(data)) {
+  let ul = createUL()
+  if (Array.isArray(data)) { // create tree by recursion
     data.forEach(item => {
       let sub = createTree(item, ctx)
       item.children && sub.appendChild(createTree(item.children, ctx))
-      children.appendChild(sub)
+      ul.appendChild(sub)
     })
-    return children
-  } else {
+    return ul
+  } else { // created actual nodes
     let li = document.createElement('li')
     data.children && li.appendChild(createIconArrow(data))
-    ctx.checkbox && li.appendChild(createCheckbox(data, ctx))
+    // create checkbox if with opt['showCheckbox']
+    ctx.showCheckbox && li.appendChild(createCheckbox(data, ctx))
     let title = createTitle()
     title.innerHTML = data.title
     li.appendChild(title)
