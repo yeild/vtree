@@ -1,7 +1,9 @@
 const path = require('path')
 
 module.exports = {
-  entry: './src/vtree',
+  entry: {
+    'vtree': './src/vtree'
+  },
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].js',

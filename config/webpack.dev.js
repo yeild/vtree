@@ -13,7 +13,7 @@ module.exports = merge(baseConfig, {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'index.html',
+      template: 'demo.html',
       inject: 'head'
     }),
     new webpack.NamedModulesPlugin(),
