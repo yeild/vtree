@@ -22,8 +22,8 @@ const tree = vTree.init({
   }
 })
 ```
-
-see: [Demo](https://yeild.github.io/vtree/demo.html)
+further: [configuration](https://github.com/yeild/vtree/blob/master/demo.html#L35) |
+[live demo](https://yeild.github.io/vtree/demo.html)
 
 ### API
 
