@@ -16,11 +16,14 @@ tree component  树状图插件
 const tree = vTree.init({
   el: document.getElementById('container'),
   data: [],
-  showCheckbox: true
+  showCheckbox: true,
+  onCheck: function (data) {
+    console.log(data)
+  }
 })
 ```
-
-see: [Demo](https://yeild.github.io/vtree/demo.html)
+further: [configuration](https://github.com/yeild/vtree/blob/master/demo.html#L35) |
+[live demo](https://yeild.github.io/vtree/demo.html)
 
 ### API
 
@@ -53,7 +56,7 @@ see: [Demo](https://yeild.github.io/vtree/demo.html)
     </tr>
     <tr>
         <td>onCheck</td>
-        <td>execute when click checkbox, with current node data as a param</td>
+        <td>execute when clicking checkbox, with current node data as a param</td>
         <td>Function</td>
         <td> - </td>
     </tr>
