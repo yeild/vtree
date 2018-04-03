@@ -4,6 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.base')
+const version = require('../package.json').version
 
 module.exports = merge(baseConfig, {
   output: {
@@ -17,6 +18,6 @@ module.exports = merge(baseConfig, {
         verbose: false
       }
     ),
-    new webpack.BannerPlugin('\ndocs: https://github.com/yeild/vtree\n')
+    new webpack.BannerPlugin('version: ' + version + '\ndocs: https://github.com/yeild/vtree\n')
   ]
 })

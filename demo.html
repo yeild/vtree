@@ -3,50 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <style>
+    .btn {
+      width: 70px;
+      line-height: 30px;
+      margin: 10px;
+      border: 1px solid #dddee1;
+      border-radius: 4px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    #result span {
+      margin: 10px;
+    }
+  </style>
 </head>
 <body>
 <div id="container"></div>
+<div id="btn" class="btn">submit</div>
+<div id="result"></div>
+<script>
+  if (!window.vTree) {
+    document.write('<script src="./dist/vtree.min.js"><\/script>')
+  }
+</script>
 <script>
   const data = [
     {
-      title: '华北区',
+      title: 'parent 1',
       children: [{
-        title: '北京市',
+        title: 'parent 1-1',
+        open: false,
         children: [{
-          title: '北京华夏天合国际影城',
+          title: 'leaf 1-1-1',
           checked: true
         }, {
-          title: '北京嘉禾影院',
-        }, {
-          title: '北京嘉禾影院',
-          children:[{
-            title: '5号厅',
-            checked: true
-          },{
-            disabled: true,
-            title: '6号厅'
-          }]
+          title: 'leaf 1-1-2',
         }]
-      },{
-        title: '北京市',
+      }, {
+        title: 'parent 1-2',
+        disabled: true,
         children: [{
-          title: '北京华夏天合国际影城'
+          title: 'leaf 1-2-1'
         }, {
-          title: '北京嘉禾影院',
+          checked: true,
+          title: 'leaf 1-2-2',
         }, {
-          title: '北京嘉禾影院'
+          title: 'leaf1-2-3'
         }]
       }]
     }, {
-      title: '华东区',
+      title: 'parent 2',
       children: [{
-        title: '江苏省',
+        title: 'parent 2-1',
         children: [{
-          title: '江苏南京高淳时代影城'
+          title: 'leaf 2-1-1',
+          disabled: true
         }, {
-          title: '江苏东海乐趴蓝海影城'
+          title: 'leaf 2-1-2'
         }, {
-          title: '江苏南京浦口影粉东方国际影城'
+          title: 'parent 2-1-3',
+          open: false,
+          children: [{
+            title: 'leaf 2-1-3-1'
+          }, {
+            title: 'leaf 2-1-3-2'
+          }, {
+            title: 'leaf 2-1-3-3'
+          }]
         }]
       }]
     }]
@@ -55,7 +80,18 @@
     data,
     showCheckbox: true
   })
-
+  document.getElementById('btn').addEventListener('click', () => {
+    let checkedNode = tree.getCheckedNodes()
+    let fragment = document.createDocumentFragment()
+    checkedNode.forEach(i => {
+      let span = document.createElement('span')
+      span.innerHTML = i.title
+      fragment.appendChild(span)
+    })
+    let result = document.getElementById('result')
+    result.innerHTML = 'checked item: '
+    result.appendChild(fragment)
+  })
 </script>
 </body>
 </html>
