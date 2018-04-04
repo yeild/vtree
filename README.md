@@ -1,7 +1,8 @@
 # vtree
 tree component  树状图插件
 
-![](http://ooqymz3vm.bkt.clouddn.com/tree.png)
+[![](http://ooqymz3vm.bkt.clouddn.com/tree.png)](https://yeild.github.io/vtree/demo.html)
+
 ### Usage
 
 1. download [vtree.min.js](https://raw.githubusercontent.com/yeild/vtree/master/dist/vtree.min.js)
@@ -22,7 +23,7 @@ const tree = vTree.init({
   }
 })
 ```
-further: [configuration](https://github.com/yeild/vtree/blob/master/demo.html#L35) |
+further: [configuration](https://github.com/yeild/vtree/blob/master/demo.html#L43) |
 [live demo](https://yeild.github.io/vtree/demo.html)
 
 ### API
@@ -127,8 +128,8 @@ further: [configuration](https://github.com/yeild/vtree/blob/master/demo.html#L3
 
 ### Feature
 * no-dependence, use out-of-the-box
-* inline css, needn't import another file
-* emit & dispatch event between parent & children by virtual tree,  less DOM touch
+* built-in css follow *ant design*
+* dispatch event between parent and children by virtual tree,  less DOM touch
 
 ### development
 ```
