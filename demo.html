@@ -5,15 +5,21 @@
   <title>Title</title>
   <style>
     .btn {
-      width: 70px;
-      line-height: 30px;
-      margin: 30px 0 10px 0;
+      padding: 6px 12px;
+      margin: 30px 10px 20px;
       border: 1px solid #dddee1;
       border-radius: 4px;
       text-align: center;
       cursor: pointer;
+      float: left;
+      font-size: 14px;
     }
-    #result span {
+    .result {
+      clear: both;
+      font-size: 14px;
+      margin-left: 10px;
+    }
+    .result span {
       margin: 10px;
     }
     a:link,a:visited,a:hover,a:active {
@@ -24,8 +30,10 @@
 <body>
 <h4><a href="https://github.com/yeild/vtree">&lt; GitHub</a></h4>
 <div id="container"></div>
-<div id="btn" class="btn">submit</div>
-<div id="result"></div>
+<div id="getChecked" class="btn">getChecked</div>
+<div id="checkAll" class="btn">checkAll</div>
+<div id="cancelAll" class="btn">cancelAll</div>
+<div id="result" class="result"></div>
 <script>
   if (!window.vTree) {
     document.write('<script src="./dist/vtree.min.js"><\/script>')
@@ -77,15 +85,16 @@
         }]
       }]
     }]
-  let tree = vTree.init({
+  const tree = vTree.init({
     el: document.getElementById('container'),
     data,
     showCheckbox: true,
-    onCheck: function (data) {
-      console.log(data)
+    onCheck: function (currentNode, checkedNodes, event) {
+      //
     }
   })
-  document.getElementById('btn').addEventListener('click', () => {
+  const getCheckedBtn = document.getElementById('getChecked')
+  getCheckedBtn.addEventListener('click', () => {
     let checkedNode = tree.getCheckedNodes()
     let fragment = document.createDocumentFragment()
     checkedNode.forEach(i => {
@@ -96,6 +105,14 @@
     let result = document.getElementById('result')
     result.innerHTML = 'checked item: '
     result.appendChild(fragment)
+  })
+  document.getElementById('checkAll').addEventListener('click',() => {
+    tree.checkAll()
+    getCheckedBtn.click()
+  })
+  document.getElementById('cancelAll').addEventListener('click',() => {
+    tree.cancelAll()
+    getCheckedBtn.click()
   })
 </script>
 </body>

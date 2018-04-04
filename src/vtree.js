@@ -1,4 +1,4 @@
-import { createTree } from './utils/createElement'
+import { createTree, handleNodeChange } from './utils/createElement'
 import { createVNode } from './utils/vNode'
 import  './vtree.scss'
 
@@ -15,9 +15,18 @@ class vTree {
     this.el.appendChild(tree)
     return this
   }
-
   getCheckedNodes () {
     return [...this.checkedNodes.keys()]
+  }
+  checkAll () {
+    this.vNode.forEach(i => {
+      handleNodeChange(i, true)
+    })
+  }
+  cancelAll () {
+    this.vNode.forEach(i => {
+      handleNodeChange(i, false)
+    })
   }
 }
 window.vTree = {

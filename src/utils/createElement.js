@@ -76,25 +76,26 @@ function createCheckbox(data, ctx) {
     setLabelClass()
   }
 
-  let realEvent = true
   checkboxInput.addEventListener('change', (e) => {
-    // when init default status, don't return
-    if (realEvent && data.disabled) return false
+    if (data.disabled) return false
     const status = e.target.checked
-    data.parent && data.emitChange(status) // emit to parent
-    data.children && data.dispatchChange(status) // dispatch to children
-    status ? data.checkThis() : data.cancelThis() // check itself
-    if (realEvent) ctx.onCheck && ctx.onCheck(data.rawData)
-    realEvent = true
+    handleNodeChange(data, status)
+    ctx.onCheck && ctx.onCheck(data.rawData, ctx.getCheckedNodes(), e)
   })
+
   if (data.checked) {
     // set default status when DOM mounted
     setTimeout(() => {
-      realEvent = false
-      checkboxInput.click()
+      handleNodeChange(data, true)
     })
   }
   return checkbox
+}
+
+export function handleNodeChange(node, status) {
+  status ? node.checkThis() : node.cancelThis() // check itself
+  node.parent && node.emitChange(status) // emit to parent
+  node.children && node.dispatchChange(status) // dispatch to children
 }
 
 export function createTree(data, ctx) {
