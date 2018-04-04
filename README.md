@@ -56,8 +56,8 @@ further: [configuration](https://github.com/yeild/vtree/blob/master/demo.html#L4
         <td>true</td>
     </tr>
     <tr>
-        <td>onCheck([currentNode][, checkedNodes][, event])</td>
-      <td>execute when clicking checkbox, with 3 arguments: currentNode, checkedNodes, origin event</td>
+        <td>onCheck</td>
+        <td>execute when clicking checkbox, with 3 arguments: currentNode, checkedNodes, origin event</td>
         <td>Function</td>
         <td> - </td>
     </tr>
