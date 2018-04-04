@@ -19,7 +19,7 @@ function createIconArrow(data) {
 
   // expand & collapse list
   iconArrow.addEventListener('click', () => {
-    getSiblings(iconArrow, 'UL').forEach(item => {
+    getSiblings(iconArrow.parentNode, 'UL').forEach(item => {
       toggleClass(item, 'vTree-children-collapse')
     })
     toggleClass(iconArrow, 'vTree-icon-arrow-collapse')
@@ -28,7 +28,7 @@ function createIconArrow(data) {
   if (data.expand === false) {
     // set initial className when DOM mounted
     setTimeout(() => { 
-      getSiblings(iconArrow, 'UL').forEach(item => {
+      getSiblings(iconArrow.parentNode, 'UL').forEach(item => {
         addClass(item, 'vTree-children-collapse')
       })
       addClass(iconArrow, 'vTree-icon-arrow-collapse')
@@ -109,12 +109,22 @@ export function createTree(data, ctx) {
     return ul
   } else { // created actual nodes
     let li = document.createElement('li')
-    data.children && li.appendChild(createIconArrow(data))
-    // create checkbox if with opt['showCheckbox']
-    ctx.showCheckbox && li.appendChild(createCheckbox(data, ctx))
+
+    let branch = document.createElement('div')
+    branch.className = 'vTree-branch'
+
+    if (data.children) {
+      branch.appendChild(createIconArrow(data))
+    } else {
+      li.className = 'vTree-leaf'
+    }
+
+    ctx.showCheckbox && branch.appendChild(createCheckbox(data, ctx))
     let title = createTitle()
     title.innerHTML = data.title
-    li.appendChild(title)
+
+    branch.appendChild(title)
+    li.appendChild(branch)
     return li
   }
 }

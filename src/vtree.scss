@@ -11,7 +11,10 @@ $grey: #dddee1;
   color: $black;
   font-size: 14px;
   &-collapse {
-    height: 0;
+    .vTree-leaf, .vTree-branch {
+      height: 0;
+      opacity: 0;
+    }
   }
   li {
     position: relative;
@@ -105,3 +108,7 @@ $grey: #dddee1;
 .vTree-title {
   margin-left: 6px;
 }
+.vTree-leaf, .vTree-branch {
+   height: 24px;
+   transition: all 0.3s;
+ }
