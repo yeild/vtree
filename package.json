@@ -1,6 +1,6 @@
 {
   "name": "vtree",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "dev": "webpack-dev-server --config config/webpack.dev.js",
     "build": "node build"

@@ -17,8 +17,8 @@ const tree = vTree.init({
   el: document.getElementById('container'),
   data: [],
   showCheckbox: true,
-  onCheck: function (data) {
-    console.log(data)
+  onCheck: function (currentNode, checkedNodes, event) {
+    //
   }
 })
 ```
@@ -55,8 +55,8 @@ further: [configuration](https://github.com/yeild/vtree/blob/master/demo.html#L3
         <td>true</td>
     </tr>
     <tr>
-        <td>onCheck</td>
-        <td>execute when clicking checkbox, with current node data as a param</td>
+        <td>onCheck([currentNode][, checkedNodes][, event])</td>
+      <td>execute when clicking checkbox, with 3 arguments: currentNode, checkedNodes, origin event</td>
         <td>Function</td>
         <td> - </td>
     </tr>
@@ -111,6 +111,16 @@ further: [configuration](https://github.com/yeild/vtree/blob/master/demo.html#L3
     <tr>
         <td>getCheckedNodes</td>
         <td>return an Array of checked nodes</td>
+        <td>none</td>
+    </tr>
+    <tr>
+        <td>checkAll</td>
+        <td>check all nodes, except disabled nodes</td>
+        <td>none</td>
+    </tr>
+    <tr>
+        <td>cancelAll</td>
+        <td>cancel all checked nodes, except disabled nodes</td>
         <td>none</td>
     </tr>
 </table>
