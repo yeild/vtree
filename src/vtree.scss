@@ -11,7 +11,7 @@ $grey: #dddee1;
   color: $black;
   font-size: 14px;
   &-collapse {
-    .vTree-leaf, .vTree-branch {
+    .vTree-leaf, .vTree-header {
       height: 0;
       opacity: 0;
     }
