@@ -110,21 +110,21 @@ export function createTree(data, ctx) {
   } else { // created actual nodes
     let li = document.createElement('li')
 
-    let branch = document.createElement('div')
-    branch.className = 'vTree-branch'
+    let header = document.createElement('div')
+    header.className = 'vTree-header'
 
     if (data.children) {
-      branch.appendChild(createIconArrow(data))
+      header.appendChild(createIconArrow(data))
     } else {
       li.className = 'vTree-leaf'
     }
 
-    ctx.showCheckbox && branch.appendChild(createCheckbox(data, ctx))
+    ctx.showCheckbox && header.appendChild(createCheckbox(data, ctx))
     let title = createTitle()
     title.innerHTML = data.title
 
-    branch.appendChild(title)
-    li.appendChild(branch)
+    header.appendChild(title)
+    li.appendChild(header)
     return li
   }
 }
