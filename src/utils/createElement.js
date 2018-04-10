@@ -59,7 +59,7 @@ function createCheckbox(data, ctx) {
   }
 
   data.checkThis = function () {
-    // when checked, push the raw data to checkedNodes Map
+    // when leaf node checked, push the raw data to checkedNodes Map
     if (!data.children) ctx.checkedNodes.set(data.rawData, null)
     checkboxInput.checked = true
     setLabelClass('checked')
