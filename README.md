@@ -50,16 +50,16 @@ further: [configuration](https://github.com/yeild/vtree/blob/master/demo.html#L4
         <td> - </td>
     </tr>
     <tr>
-        <td>slice</td>
-        <td>if title.length more than this number, show ellipsis</td>
-        <td>Number</td>
-        <td> - </td>
-    </tr>
-    <tr>
         <td>showCheckbox</td>
         <td>if show checkbox</td>
         <td>Boolean</td>
         <td>true</td>
+    </tr>
+    <tr>
+        <td>slice</td>
+        <td>if title.length more than this number, show ellipsis</td>
+        <td>Number</td>
+        <td> - </td>
     </tr>
     <tr>
         <td>onCheck</td>
