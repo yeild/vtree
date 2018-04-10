@@ -46,7 +46,7 @@
       children: [{
         title: 'parent 1-1',
         children: [{
-          title: 'leaf 1-1-1',
+          title: 'leaf 1-1-1 long long long string',
           checked: true
         }, {
           title: 'leaf 1-1-2',
@@ -88,6 +88,7 @@
   const tree = vTree.init({
     el: document.getElementById('container'),
     data,
+    slice: 10,
     showCheckbox: true,
     onCheck: function (currentNode, checkedNodes, event) {
       //

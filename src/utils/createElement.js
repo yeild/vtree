@@ -121,7 +121,12 @@ export function createTree(data, ctx) {
 
     ctx.showCheckbox && header.appendChild(createCheckbox(data, ctx))
     let title = createTitle()
-    title.innerHTML = data.title
+    if (ctx.slice && data.title.length > ctx.slice) {
+      title.innerHTML = data.title.slice(0, ctx.slice) + ' ...'
+      title.title = data.title
+    } else {
+      title.innerHTML = data.title
+    }
 
     header.appendChild(title)
     li.appendChild(header)
