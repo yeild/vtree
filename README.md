@@ -7,7 +7,7 @@ tree component  树状图插件
 
 1. download [vtree.min.js](https://raw.githubusercontent.com/yeild/vtree/master/dist/vtree.min.js)
 
-2.  import vue.min.js
+2.  import vtree.min.js
 ```
 <script src="vtree.min.js"></script>
 ```
