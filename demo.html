@@ -90,31 +90,24 @@
     data,
     slice: 10,
     showCheckbox: true,
-    onCheck: function (currentNode, checkedNodes, event) {
-      //
-    }
+    onCheck: renderChecked
   })
   const getCheckedBtn = document.getElementById('getChecked')
-  getCheckedBtn.addEventListener('click', () => {
-    let checkedNode = tree.getCheckedNodes()
-    let fragment = document.createDocumentFragment()
-    checkedNode.forEach(i => {
-      let span = document.createElement('span')
-      span.innerHTML = i.title
+  getCheckedBtn.addEventListener('click', renderChecked)
+  document.getElementById('checkAll').addEventListener('click', tree.checkAll)
+  document.getElementById('cancelAll').addEventListener('click', tree.cancelAll)
+  function renderChecked () {
+    const checkedNode = tree.getCheckedNodes()
+    const fragment = document.createDocumentFragment()
+    checkedNode.forEach(node => {
+      const span = document.createElement('span')
+      span.innerHTML = node.title
       fragment.appendChild(span)
     })
-    let result = document.getElementById('result')
+    const result = document.getElementById('result')
     result.innerHTML = 'checked item: '
     result.appendChild(fragment)
-  })
-  document.getElementById('checkAll').addEventListener('click',() => {
-    tree.checkAll()
-    getCheckedBtn.click()
-  })
-  document.getElementById('cancelAll').addEventListener('click',() => {
-    tree.cancelAll()
-    getCheckedBtn.click()
-  })
+  }
 </script>
 </body>
 </html>
