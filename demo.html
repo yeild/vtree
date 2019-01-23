@@ -10,9 +10,10 @@
       border: 1px solid #dddee1;
       border-radius: 4px;
       text-align: center;
-      cursor: pointer;
       float: left;
       font-size: 14px;
+      cursor: pointer;
+      user-select: none;
     }
     .result {
       clear: both;
@@ -90,12 +91,15 @@
     data,
     slice: 10,
     showCheckbox: true,
-    onCheck: renderChecked
+    onCheck: function (currentNode, checkedNodes, event) {
+      // ...
+    }
   })
-  const getCheckedBtn = document.getElementById('getChecked')
-  getCheckedBtn.addEventListener('click', renderChecked)
-  document.getElementById('checkAll').addEventListener('click', tree.checkAll)
-  document.getElementById('cancelAll').addEventListener('click', tree.cancelAll)
+
+  document.getElementById('getChecked').addEventListener('click', renderChecked)
+  document.getElementById('checkAll').addEventListener('click', tree.checkAll.bind(tree))
+  document.getElementById('cancelAll').addEventListener('click', tree.cancelAll.bind(tree))
+
   function renderChecked () {
     const checkedNode = tree.getCheckedNodes()
     const fragment = document.createDocumentFragment()
