@@ -14,6 +14,11 @@
       font-size: 14px;
       cursor: pointer;
       user-select: none;
+      transition: all 0.1s;
+    }
+    .btn:hover {
+      background: #2d8cf0;
+      color: white;
     }
     .result {
       clear: both;
@@ -31,7 +36,6 @@
 <body>
 <h4><a href="https://github.com/yeild/vtree">&lt; GitHub</a></h4>
 <div id="container"></div>
-<div id="getChecked" class="btn">getChecked</div>
 <div id="checkAll" class="btn">checkAll</div>
 <div id="cancelAll" class="btn">cancelAll</div>
 <div id="result" class="result"></div>
@@ -91,14 +95,21 @@
     data,
     slice: 10,
     showCheckbox: true,
-    onCheck: function (currentNode, checkedNodes, event) {
-      // ...
+    onCheck: function (checkedNodes, event) {
+      console.log(checkedNodes)
+      console.log(event)
+      renderChecked()
     }
   })
 
-  document.getElementById('getChecked').addEventListener('click', renderChecked)
-  document.getElementById('checkAll').addEventListener('click', tree.checkAll.bind(tree))
-  document.getElementById('cancelAll').addEventListener('click', tree.cancelAll.bind(tree))
+  document.getElementById('checkAll').addEventListener('click', function () {
+    tree.checkAll()
+    renderChecked()
+  })
+  document.getElementById('cancelAll').addEventListener('click', function () {
+    tree.cancelAll()
+    renderChecked()
+  })
 
   function renderChecked () {
     const checkedNode = tree.getCheckedNodes()

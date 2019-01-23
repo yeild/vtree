@@ -80,7 +80,7 @@ function createCheckbox(data, ctx) {
     if (data.disabled) return false
     const status = e.target.checked
     handleNodeChange(data, status)
-    ctx.onCheck && ctx.onCheck(data.rawData, ctx.getCheckedNodes(), e)
+    ctx.onCheck && ctx.onCheck(ctx.getCheckedNodes(), e)
   })
 
   if (data.checked) {
