@@ -19,7 +19,7 @@ const tree = vTree.init({
   el: document.getElementById('container'),
   data: [],
   showCheckbox: true,
-  onCheck: function (currentNode, checkedNodes, event) {
+  onCheck: function (checkedNodes, event) {
     //
   }
 })
@@ -62,7 +62,7 @@ const tree = vTree.init({
     </tr>
     <tr>
         <td>onCheck</td>
-        <td>execute when clicking checkbox, with 3 arguments: currentNode, checkedNodes, origin event</td>
+      <td>execute when clicking checkbox, with 2 arguments: checkedNodes, origin event</td>
         <td>Function</td>
         <td> - </td>
     </tr>
