@@ -23,8 +23,8 @@ const tree = vTree.init({
   }
 })
 ```
-further: [configuration](https://github.com/yeild/vtree/blob/master/demo.html#L43) |
-[live demo](https://yeild.github.io/vtree/demo.html)
+[*data config*](https://github.com/yeild/vtree/blob/master/demo.html#L43) |
+[demo](https://yeild.github.io/vtree/demo.html)
 
 ### API
 
@@ -133,9 +133,8 @@ further: [configuration](https://github.com/yeild/vtree/blob/master/demo.html#L4
 </table>
 
 ### Feature
-* no-dependence, use out-of-the-box
-* built-in css follow *ant design*
-* dispatch event between parent and children by virtual tree,  less DOM touch
+* no-dependence and built-in css
+* virtual DOM,  less DOM touch
 
 ### development
 ```
