@@ -1,6 +1,7 @@
 # vtree
 tree component  树状图插件
 
+### [demo](https://yeild.github.io/vtree/demo.html)
 [![](http://ooqymz3vm.bkt.clouddn.com/tree.png)](https://yeild.github.io/vtree/demo.html)
 
 ### Usage
@@ -23,8 +24,6 @@ const tree = vTree.init({
   }
 })
 ```
-[*data config*](https://github.com/yeild/vtree/blob/master/demo.html#L43) |
-[demo](https://yeild.github.io/vtree/demo.html)
 
 ### API
 
