@@ -1,7 +1,7 @@
 # vtree
 tree component  树状图插件
 
-### [demo](https://yeild.github.io/vtree/demo.html)
+### [演示地址](https://yeild.github.io/vtree/demo.html)
 [![](https://img2018.cnblogs.com/blog/1150501/201903/1150501-20190312164724142-624018279.png)](https://yeild.github.io/vtree/demo.html)
 
 ### Usage
